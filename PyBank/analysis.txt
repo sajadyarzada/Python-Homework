@@ -1,0 +1,30 @@
+#Dependencies
+import pandas as pd
+
+#Save path to data set in a variable 
+main_file = "Resources/budget_data.csv"
+
+#Using Pandas to read data
+main_file_df = pd.read_csv(main_file)
+main_file_df.head
+
+#Referecing the two columns
+main_file_df[["Date", "Profit/Losses"]].head()
+
+#The net total amount of "Profit/Losses" over the entire period
+Total = main_file_df["Profit/Losses"].sum()
+Total
+
+#The total number of months included in the dataset
+Total_Months = main_file_df["Date"].count()
+Total_Months
+
+#The greatest increase in profits (date and amount) over the entire period
+Greatest_Increasein_Profit = main_file_df.nlargest(1, "Profit/Losses")
+Greatest_Increasein_Profit
+
+#The greatest decrease in losses (date and amount) over the entire period
+Greatest_Decreasein_Profit = main_file_df.nsmallest(1, "Profit/Losses")
+Greatest_Decreasein_Profit
+
+main_file_df_to_csv("analysis.txt 'sep=\t')

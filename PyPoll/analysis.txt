@@ -1,0 +1,23 @@
+#Dependencies
+import pandas as pd
+
+#Save path to data set in a variable 
+election_file = "Resources/election_data.csv"
+
+#Using Pandas to read data
+election_file_df = pd.read_csv(election_file)
+election_file_df.head
+
+#Total Votes
+Total_Votes = election_file_df["Voter ID"].count
+Total_Votes
+
+#A complete list of candidates and the count of who received votes
+votes_count_df = election_file_df.groupby(['Candidate'])
+print (votes_count_df)
+votes_count_df.count().head(4)
+
+#Percentage of Votes for Each Candidate 
+votes_count_df["Voter ID"].count()/3521001*100
+
+votes_count_df_to_csv("analysis.txt 'sep=\t')
